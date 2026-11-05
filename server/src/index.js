@@ -9,8 +9,14 @@ const app = express();
 
 app.disable("x-powered-by");
 
-app.use(cors());
-
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://skytrace-weather-app.vercel.app",
+    ],
+  })
+);
 app.use(express.json({ limit: "100kb" }));
 
 app.use("/api/weather", weatherRoutes);
